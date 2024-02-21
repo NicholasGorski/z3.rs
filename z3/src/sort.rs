@@ -154,6 +154,10 @@ impl<'ctx> Sort<'ctx> {
         (sort, enum_consts, enum_testers)
     }
 
+    pub fn datatype(ctx: &'ctx Context, name: Symbol) -> Sort<'ctx> {
+        unsafe { Self::wrap(ctx, Z3_mk_datatype_sort(ctx.z3_ctx, name.as_z3_symbol(ctx))) }
+    }
+
     pub fn kind(&self) -> SortKind {
         unsafe { Z3_get_sort_kind(self.ctx.z3_ctx, self.z3_sort) }
     }

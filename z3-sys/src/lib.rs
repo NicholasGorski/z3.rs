@@ -2045,6 +2045,15 @@ extern "C" {
         constructors: *mut Z3_constructor,
     ) -> Z3_sort;
 
+    /// Create a forward reference to a recursive datatype being declared. The forward reference
+    /// can be used in a nested occurrence: the range of an array or as element sort of a sequence.
+    /// The forward reference should only be used when used in an accessor for a recursive datatype
+    /// that gets declared.
+    ///
+    /// Forward references can replace the use sort references, that are unsigned integers in
+    /// the [`Z3_mk_constructor`]` call
+    pub fn Z3_mk_datatype_sort(c: Z3_context, name: Z3_symbol) -> Z3_sort;
+
     /// Create list of constructors.
     ///
     /// - `c`: logical context.
